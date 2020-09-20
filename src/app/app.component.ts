@@ -9,6 +9,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { ContactPage } from '../pages/contact/contact';
 import { FavoritesPage } from '../pages/favorites/favorites';
 import { ReservationPage } from '../pages/reservation/reservation';
+import { CommentPage } from '../pages/comment/comment';
 
 @Component({
   templateUrl: 'app.html'
@@ -54,4 +55,5 @@ export class MyApp {
     let modal = this.modalCtrl.create(ReservationPage);
     modal.present();
   }
+
 }

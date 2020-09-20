@@ -33,10 +33,6 @@ export class FavoritesPage implements OnInit {
         errmess => this.errMess = errmess);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FavoritesPage');
-  }
-
   deleteFavorite(item: ItemSliding, id: number) {
     console.log('delete', id);
     let dish = this.favorites.find(i => i.id == id);
