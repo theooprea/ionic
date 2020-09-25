@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
-import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';import {Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { User } from '../../shared/user';
+import { RegisterPage } from '../register/register';
 
 /**
  * Generated class for the LoginPage page.
@@ -23,12 +23,14 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public viewCtrl: ViewController,
     private formBuilder: FormBuilder,
-    private storage: Storage ) {
+    private storage: Storage,
+    private modalCtrl: ModalController) {
 
       storage.get('user').then(user => {
         if (user) {
-          console.log(user);
+          console.log(user + " from storage");
           this.user = user;
+          console.log(this.user + " 2");
           this.loginForm
             .patchValue({
               'username': this.user.username, 
@@ -39,7 +41,7 @@ export class LoginPage {
           console.log('user not defined');
       });
 
-
+      console.log(this.user + " 1");
       this.loginForm = this.formBuilder.group({
         username: ['', Validators.required],
         password: ['',Validators.required],
@@ -48,6 +50,12 @@ export class LoginPage {
 
   }
 
+  openRegister() {
+    let modal = this.modalCtrl.create(RegisterPage);
+    modal.present();
+    modal.onDidDismiss(() => this.dismiss())
+  }
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
@@ -62,7 +70,7 @@ export class LoginPage {
     this.user.password = this.loginForm.get('password').value;
     console.log(this.user);
     if(this.loginForm.get('remember').value)
-      this.storage.set('user', this.user)
+      this.storage.set('user', this.user);
     else
       this.storage.remove('user');
     this.viewCtrl.dismiss();

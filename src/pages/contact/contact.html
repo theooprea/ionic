@@ -26,10 +26,10 @@
       <ion-grid>
         <ion-row>
           <ion-col>
-            <button ion-button clear><ion-icon name="call"></ion-icon> CALL</button>
+            <button ion-button icon-left clear small (click)="callRestaurant()"><ion-icon name="call"></ion-icon><div>Call</div></button>
           </ion-col>
           <ion-col>
-            <button ion-button clear><ion-icon name="mail"></ion-icon> EMAIL</button>
+            <button ion-button icon-left clear small (click)="sendEmail()"><ion-icon name="mail"></ion-icon><div>Email</div></button>
           </ion-col>
         </ion-row>
       </ion-grid>
